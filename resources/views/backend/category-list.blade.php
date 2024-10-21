@@ -9,8 +9,11 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Category Name</th>
+      <th scope="col">Parent Category </th>
+      <th scope="col">Category Slug</th>
       <th scope="col">Category Details</th>
       <th scope="col">Status</th>
+      <th scope="col">Action</th>
 
     </tr>
   </thead>
@@ -20,13 +23,15 @@
   <tr>
      <td>{{$cat->id}}</td>
      <td>{{$cat->name}}</td>
+     <td>{{$cat->parent ? $cat->parent->name: 'Null'}} </td>
+     <td>{{$cat->slug}}</td>
      <td>{{$cat->description}}</td>
-    <td>{{$cat->status}}</td>
+     <td>{{$cat->status}}</td>
 
     <td>
-        <a class="btn btn-primary" href="">Add</a>
-        <a class="btn btn-danger" href="">Delete</a>
-        <a class="btn btn-warning" href="">Edit</a>
+        <a class="btn btn-primary" href="">View</a>
+        <a class="btn btn-danger" href="">Edit</a>
+        <a class="btn btn-warning" href="{{route('category.delete',$cat->id)}}">Delete</a>
 
     </td>
 

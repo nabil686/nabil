@@ -14,9 +14,14 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'changeLangMiddleware' => \App\Http\Middleware\ChangeLanguageMiddleware::class,
+            'checkpermission' => \App\Http\Middleware\CheckPermission::class,
+        
         ]);
-    })
 
+
+        })
+       
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
+

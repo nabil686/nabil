@@ -12,8 +12,8 @@
 
  <div class="form-group">
     <label for="p">Select category name</label>
-    <select name="category_id" class="form-select" aria-label="Default select example">
-    
+    <select name="category_id" id="category_id" class="form-control">
+      <option value="">--Select Category--</option>
     @foreach ($allCategory as $category)
     <option value="{{$category->id}}">{{$category->name}}</option>
     @endforeach
