@@ -13,6 +13,7 @@ class AuthenticationController extends Controller
     }
     public function doLogin(Request $request)
     {
+        
         $credentials=$request->except("_token");
         $check=Auth::attempt($credentials);
 

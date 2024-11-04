@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('role_id')->constrained('roles')->restrictOnDelete();
-            $table->string('is_emial_verified')->default('false');
-            $table->integer('is_mobile_verified');
-            $table->string('OTP')->default('false');
+            $table->boolean('is_emial_verified')->default(false);
+            $table->boolean('is_mobile_verified')->default(false);
+            $table->string('otp')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

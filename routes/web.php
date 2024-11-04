@@ -4,12 +4,19 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\SignUpController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
+
+
+Route::get('/',[HomeController::class,'home'])->name('home');
+Route::get('/sign-up',[SignUpController::class,'sign_up'])->name('signup');
+Route::get('/login',[SignUpController::class,'login'])->name('login');
 
 Route::group(['middleware' => 'changeLangMiddleware'], function () {
 
@@ -24,6 +31,7 @@ Route::group(['middleware' => 'changeLangMiddleware'], function () {
     Route::group(['middleware' => ['auth','checkpermission']], function () {
         Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
         Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
+
 
         //category 
         Route::get('/category-list', [CategoryController::class, 'list'])->name('category.list');
@@ -59,9 +67,6 @@ Route::group(['middleware' => 'changeLangMiddleware'], function () {
         Route::get('/user/edit/{p_id}', [UserController::class, 'edit'])->name('user.edit');
         Route::get('/user/view/{p_id}', [UserController::class, 'viewUser'])->name('user.view');
         Route::post('/user/update/{p_id}', [UserController::class, 'update'])->name('user.update');
-      
-
-
         Route::get('/customer-list', [CustomerController::class, 'customerList'])->name('customer.list');
         Route::get('/order-list', [OrderController::class, 'orderList'])->name('admin.order');
     });
