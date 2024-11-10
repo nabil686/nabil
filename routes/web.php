@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\FrontendCustomerController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\SignUpController;
 use App\Http\Controllers\OrderController;
@@ -14,14 +16,28 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/',[HomeController::class,'home'])->name('home');
-Route::get('/sign-up',[SignUpController::class,'sign_up'])->name('signup');
-Route::get('/login',[SignUpController::class,'login'])->name('login');
+
+
+
 
 Route::group(['middleware' => 'changeLangMiddleware'], function () {
 
+    //Frontend
+    Route::get('/',[HomeController::class,'home'])->name('home');
+    Route::get('/about',[AboutController::class,'about'])->name('about');
 
     Route::get('/change/lnag/{lang_name}', [DashboardController::class, 'changeLang'])->name('change.lang');
+
+    //Frontend
+    Route::post('/registration',[FrontendCustomerController::class,'registration'])->name('customer.registration');
+    Route::post('/login',[FrontendCustomerController::class,'login'])->name('customer.login');
+
+    Route::get('/otp',[HomeController::class,'otpPage'])->name('otp.page');
+    Route::get('/resend-otp/{email}',[HomeController::class,'otpResend'])->name('otp.resend');
+    Route::post('/otp-submit',[HomeController::class,'otpSubmit'])->name('otp.submit');
+
+
+
 
      Route::group(['prefix'=>'admin'],function(){
 

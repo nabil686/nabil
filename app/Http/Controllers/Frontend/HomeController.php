@@ -9,6 +9,18 @@ class HomeController extends Controller
 {
     public function home()
     {
-        return view('frontend.master');
+        return view('frontend.home');
+    }
+    public function otpPage()
+    {
+
+    }
+    public function otpResend()
+    {
+
+    }
+    public function otpSubmit()
+    {
+        
     }
 }

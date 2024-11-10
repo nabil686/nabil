@@ -5,12 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SignUpController extends Controller
+class FrontendCustomerController extends Controller
 {
-    public function sign_up()
+    public function registration()
     {
-       return view('frontend.sign_up');
-
+        return view('frontend.registration');
     }
 
     public function login()
