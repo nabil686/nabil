@@ -9,6 +9,18 @@
 <lavel for="name">Enter Category Name</lavel>
 <input name="cat_name" type="text" class="form-control" id="name" placeholder="Enter Category Name">
 </div>
+<div>
+<label for="p"> Category Parent Name </label>
+    <select name="parent_id" class="form-select" aria-label="Default select example">
+    option value="">--Select Parent--</option>
+    @foreach($allCategory as $category)
+    <option value="{{$category->id}}">{{$category->name}}</option>
+    @endforeach
+
+    </select>
+</div class="from-group">
+
+
 <div class="from-group">
 <lavel for="name">Enter Description</lavel>
 <input name="cat_description" type="text" class="form-control" id="name" placeholder="Enter Description">

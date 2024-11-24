@@ -11,12 +11,14 @@ class CategoryController extends Controller
     public function list()
     {
         // $allCategory=Category::all();
-        $allCategory=Category::paginate(3);
-        return view('backend.category-list', compact('allCategory'));
+        $allCategory=Category:: with ('parent')->paginate(10);
+        $parents=Category::with ('child')->where('parent_id',null)->get();
+        return view('backend.category-list', compact('allCategory','parents'));
     }
     public function form()
     {
-      return view('backend.category-form');
+      $allCategory=Category::all();
+      return view('backend.category-form',compact('allCategory'));
     }
     public function store(Request $request)
     {
@@ -40,12 +42,14 @@ class CategoryController extends Controller
         //     $fileName=date('Ymdhis'). '.'.$file->getClientOriginalExtension();
         //     $file->storeAs('/uploads',$fileName);
         // }
-
+        // dd($request->all());
         category::create([
+          
         'name'=>$request->cat_name,
+        'parent_id'=>$request->parent_id,
         'description'=>$request->cat_description,
         // 'image'=>$fileName
-
+        
             
         ]);
         return redirect()->route('category.list');
